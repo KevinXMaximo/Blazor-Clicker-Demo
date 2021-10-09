@@ -1,5 +1,5 @@
 # Blazor-Clicker-Demo
-A demonstration of three different Blazor pages, one being a simplistic demo for a clicker game, the other being a demonstration for input and output through the squaring of a number, and the third being a todo list.
+This is a demonstration of three different Blazor pages following different concepts, one being a simplistic demo for a clicker game, the other being a demonstration for input and output by squaring a number, and the third being a todo list.
 
 You can try the app out for yourself through the url: http://blazor-clicker-demo.azurewebsites.net/
 
