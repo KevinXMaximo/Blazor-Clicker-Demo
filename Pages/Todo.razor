@@ -1,0 +1,30 @@
+@page "/todo" // Determines that the code below will be a page, the specifics of which will be set in NavMenu.razor
+
+<h1>Todo (@todos.Count(todo => !todo.IsDone))</h1> <!-- displays the text "todo" and then the number of tasks to be done based on the field "todos" while they are not marked done -->
+
+<ul> <!-- tag for bulleted list (the list of todo items) -->
+    @foreach (var todo in todos) // loop for every variable in field todo (every list item)
+    { // open contents of loop
+        <li> <!-- tag for the individual items of a list, code will indicate what is to be done to each todo item-->
+            <input type="checkbox" @bind="todo.IsDone" /> <!-- makes it so each list item contains a checkbox next to it which can be checked and marked done -->
+            <input @bind="todo.Title" /> <!-- makes it so each input once added creates a list item through field Title, following the code in line 26 -->
+        </li> <!-- tag for the individual items of a list, this one signifies the end of the <li> code -->
+    } <!-- close contents of loop -->
+</ul> <!-- close code for bulleted list -->
+
+<input placeholder="Something todo" @bind="newTodo" /> <!-- displays text "something todo" as a placeholder in the textbox -->
+<button @onclick="AddTodo">Add todo</button> <!-- creates a button which says "Add todo" and which on click adds the item typed in the textbox to the list -->
+
+@code { // starts the place to input c# code to be exectued
+    private List<TodoItem> todos = new(); // initializes field todos using class TodoItem, the instance is initialized empty through the function new()
+    private string newTodo; // creates a string variable named newTodo
+
+    private void AddTodo() // creates a void function to be triggered every time the user clicks the button to add a todo item
+    { // opens contents of the function
+        if (!string.IsNullOrWhiteSpace(newTodo)) // triggers code if the contents typed on the textbox are not empty or null
+        { // opens content of if loop
+            todos.Add(new TodoItem { Title = newTodo }); // makes typed string newTodo into the field Title, which will then be added as a todo item as described in line 10
+            newTodo = string.Empty; // empties the string newTodo so that the user can type a new string should they want to
+        } // closes if loop
+    } // closes function to add items
+} <!-- ends c# code -->

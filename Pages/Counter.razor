@@ -1,0 +1,61 @@
+@page "/counter"
+
+<h1>Clicker Game Protoype</h1>
+
+<h1> <br /> Money Machine</h1>
+
+<p>Money Stored: $@currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">+$@IncrementAmount</button>
+
+<h1> <br /> Hire Helper [+$1 per click]</h1>
+
+<p>Helpers Hired: @helperCount</p>
+
+<button class="btn btn-primary" @onclick="HireHelper">Price: $@helperPrice <br />  +1 helper</button>
+
+<h1> <br /> Upgrade Machine [+$10 per click]</h1>
+
+<p>Upgrades Purchased: @upgradeCount</p>
+
+<button class="btn btn-primary" @onclick="UpgradeMachine">Price: $@upgradePrice <br />  +1 upgrade</button>
+
+@code {
+    private int currentCount = 0;
+    private int helperCount = 0;
+    private int upgradeCount = 0;
+    private int helperPrice = 5;
+    private int upgradePrice = 185;
+
+    [Parameter]
+    public int IncrementAmount { get; set; } = 1;
+
+    private void IncrementCount()
+    {
+        currentCount += IncrementAmount;
+    }
+
+    private void HireHelper()
+    {
+
+        if (currentCount >= helperPrice) {
+        helperCount += 1;
+        currentCount -= helperPrice;
+        IncrementAmount += 1;
+        helperPrice += helperCount * 5;
+
+        }
+    }
+
+    private void UpgradeMachine()
+    {
+
+        if (currentCount >= upgradePrice) {
+        upgradeCount += 1;
+        currentCount -= upgradePrice;
+        IncrementAmount += 10;
+        upgradePrice += upgradeCount * 15;
+
+        }
+    }
+}
